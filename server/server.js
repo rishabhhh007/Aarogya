@@ -1,3 +1,4 @@
+import 'express-async-errors';
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
@@ -10,7 +11,6 @@ import infra from './routes/infra.js';
 import appointments from './routes/appointments.js';
 import billing from './routes/billing.js';
 import reports from './routes/reports.js';
-import 'express-async-errors';
 import vitals from './routes/vitals.js';
 import labs from './routes/labs.js';
 import duties from './routes/duties.js';
@@ -19,6 +19,13 @@ import chat from './routes/chat.js';
 const app = express();
 app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173' }));
 app.use(express.json());
+
+// connect once and reuse the connection (important on serverless)
+let dbPromise;
+const connectDB = () =>
+  (dbPromise ||= mongoose.connect(process.env.MONGO_URI).catch((e) => { dbPromise = null; throw e; }));
+app.use(async (_req, _res, next) => { await connectDB(); next(); });
+
 app.use('/api/auth', auth);
 app.use('/api/dashboard', dashboard);
 app.use('/api/patients', patients);
@@ -32,15 +39,14 @@ app.use('/api/labs', labs);
 app.use('/api/duties', duties);
 app.use('/api/chat', chat);
 
-// any error inside a route now returns a message instead of leaving the page waiting
+// any error inside a route returns a message instead of leaving the page waiting
 app.use((err, _req, res, _next) => {
   console.error(err);
   res.status(500).json({ message: `Server error: ${err.message}` });
 });
 
-await mongoose.connect(process.env.MONGO_URI);
-
 if (process.env.VERCEL !== '1') {
+  await connectDB(); // locally: fail fast if the database is unreachable
   app.listen(process.env.PORT || 5000, () => console.log('API running'));
 }
 
