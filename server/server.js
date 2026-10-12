@@ -17,7 +17,7 @@ import duties from './routes/duties.js';
 import chat from './routes/chat.js';
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173' }));
 app.use(express.json());
 app.use('/api/auth', auth);
 app.use('/api/dashboard', dashboard);
@@ -39,5 +39,9 @@ app.use((err, _req, res, _next) => {
 });
 
 await mongoose.connect(process.env.MONGO_URI);
-app.listen(process.env.PORT || 5000, () => console.log('API running'));
 
+if (process.env.VERCEL !== '1') {
+  app.listen(process.env.PORT || 5000, () => console.log('API running'));
+}
+
+export default app;
