@@ -285,3 +285,35 @@ dd{margin:0;font-size:14px;font-weight:500}
 @media (max-width:700px){.bill-row{grid-template-columns:1fr 1fr}.login-brand{left:20px}}
 @media (max-width:600px){.grid2{grid-template-columns:1fr}.duty-row{flex-wrap:wrap}.shift-opts{grid-template-columns:1fr}}
 @media (max-width:520px){.modal .grid2{grid-template-columns:1fr}.charts{grid-template-columns:1fr}.sidebar{width:min(280px,86vw)}.content{padding-top:20px;padding-bottom:34px}.topbar{padding-top:12px;padding-bottom:12px}.welcome{font-size:21px}.login-wrap{padding:88px 18px 28px}.login.card{padding:26px 22px}.chat-panel{right:8px;bottom:8px;height:calc(100vh - 16px)}}
+
+/* Login: soft green glow, strongest behind the card (like the reference) */
+.login-wrap {
+  background: radial-gradient(ellipse at center, #9fdccf 0%, #bfe8df 32%, #dcf2ed 62%, #eef8f6 100%);
+}
+
+/* remove the decorative rings so only the glow shows */
+.login-wrap::before,
+.login-wrap::after {
+  display: none;
+}
+
+/* frosted-glass card, as in the reference */
+.login.card {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 34px rgba(19, 124, 120, 0.14);
+}
+
+.login.card:hover,
+.login.card:focus-within {
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 14px 40px rgba(19, 124, 120, 0.2);
+}
+
+.login input {
+  background: #f6fcfb;
+  border-color: transparent;
+  box-shadow: 0 1px 3px rgba(19, 124, 120, 0.08);
+}
