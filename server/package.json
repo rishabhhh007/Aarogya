@@ -1,0 +1,22 @@
+{
+    "name": "hms-server",
+    "type": "module",
+    "scripts": {
+        "server": "node --watch server.js",
+        "seed": "node seed.js",
+        "demobills": "node seedBills.js",
+        "democare": "node seedCare.js",
+        "seedall": "node seedAll.js",
+        "clear": "node clearData.js"
+    },
+    "dependencies": {
+        "@google/genai": "^2.28.0",
+        "bcryptjs": "^2.4.3",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2",
+        "express-async-errors": "^3.1.1",
+        "jsonwebtoken": "^9.0.2",
+        "mongoose": "^8.5.0"
+    }
+}
