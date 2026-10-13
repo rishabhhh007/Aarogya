@@ -5,7 +5,7 @@ import {
 } from 'recharts';
 import api from '../api';
 
-const C = { blue: '#1f6fb2', green: '#2e8b57', red: '#c0392b', amber: '#d99a2b', teal: '#0f8b8d', grey: '#9aa8b6' };
+const C = { blue: '#137c78', green: '#25845c', red: '#c34f4b', amber: '#d99a2b', teal: '#0f8b8d', grey: '#9aa8b6' };
 const inr = (n) => `₹${Number(n || 0).toLocaleString('en-IN')}`;
 const short = (s) => new Date(`${s}T00:00:00`).toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
 const STATUS_COLOR = { admitted: C.red, outpatient: C.amber, discharged: C.grey };

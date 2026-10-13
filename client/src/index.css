@@ -317,3 +317,101 @@ dd{margin:0;font-size:14px;font-weight:500}
   border-color: transparent;
   box-shadow: 0 1px 3px rgba(19, 124, 120, 0.08);
 }
+/* =====================================================
+   DESIGN REFRESH: airy layout, layered shadows, pill UI
+   ===================================================== */
+:root {
+  --shadow: 0 1px 2px rgba(15, 50, 48, .04), 0 8px 24px rgba(15, 50, 48, .06);
+  --shadow-hover: 0 2px 4px rgba(15, 50, 48, .04), 0 18px 40px rgba(15, 50, 48, .12);
+  --hover-border: #cfe7e3;
+}
+body { font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif; background: #f6faf9; }
+.login-wrap, .login-brand { font-family: inherit; }
+.app { background: radial-gradient(900px 420px at 85% -80px, rgba(19, 124, 120, .07), transparent 70%), #f6faf9; }
+
+/* ---------- Sidebar: light, with a solid logo tile ---------- */
+.sidebar { background: #fff; color: #506268; border-right: 1px solid #e8efee; box-shadow: 4px 0 30px rgba(15, 50, 48, .04); }
+.brand { color: #12302f; font-weight: 800; }
+.brand span { width: 40px; height: 40px; border-radius: 13px; background: var(--primary); box-shadow: 0 8px 18px rgba(19, 124, 120, .3); font-size: 0; }
+.brand span::before { content: '✚'; font-size: 19px; color: #fff; line-height: 1; }
+.nav-item { color: #506268; border-radius: 12px; font-weight: 600; }
+.nav-item:hover { background: #f1f7f6; color: #12302f; }
+.nav-item.active { background: #e5f4f2; color: #0d625f; font-weight: 700; box-shadow: inset 3px 0 var(--primary); }
+.nav-item.logout { border-top: 1px solid #e8efee; border-radius: 12px; color: #c0463f; }
+.nav-item.logout:hover { background: #fdeceb; color: #a5362b; }
+
+/* ---------- Top bar: white, name and role in a pill ---------- */
+.topbar { min-height: 72px; padding: 12px 40px; background: rgba(255, 255, 255, .92); border-bottom: 1px solid #e8efee; box-shadow: 0 4px 20px rgba(15, 50, 48, .04); }
+.topbar h2 { font-size: 19px; font-weight: 800; letter-spacing: -.4px; }
+.user-chip { padding: 5px 18px 5px 5px; border: 1px solid #e3ecea; border-radius: 99px; background: #fff; box-shadow: 0 2px 8px rgba(15, 50, 48, .05); }
+.avatar { width: 36px; height: 36px; background: var(--primary); color: #fff; box-shadow: 0 4px 10px rgba(19, 124, 120, .3); }
+.user-chip small { margin: 0; font-size: 11px; font-weight: 600; color: var(--primary); }
+
+/* ---------- Page heading with a small tag above it ---------- */
+.content { padding: 34px 40px 56px; }
+.content .page { max-width: 1280px; }
+.welcome { margin: 0 0 26px; font-size: 34px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.15; }
+.welcome::before {
+  content: 'HOSPITAL OVERVIEW'; display: block; width: max-content; margin-bottom: 14px; padding: 7px 14px 7px 28px;
+  border: 1px solid #cfe7e3; border-radius: 99px; font-size: 11px; font-weight: 700; letter-spacing: 1.3px; color: var(--primary);
+  background: radial-gradient(circle at 14px 50%, var(--primary) 0 3.5px, transparent 4px), #eaf6f4;
+}
+.row { gap: 22px; margin-bottom: 22px; }
+
+/* ---------- Cards ---------- */
+.card { padding: 24px; border: 1px solid rgba(15, 50, 48, .06); border-radius: 20px; }
+.card:hover { border-color: var(--hover-border); transform: translateY(-3px); }
+.card h3 { font-size: 12px; letter-spacing: .9px; color: #5d7077; }
+.icon { width: 42px; height: 42px; border-radius: 13px; font-size: 19px; box-shadow: inset 0 0 0 1px rgba(19, 124, 120, .08), 0 4px 10px rgba(19, 124, 120, .08); }
+.big { font-size: 40px; font-weight: 800; letter-spacing: -1.4px; }
+.trio b { font-weight: 800; }
+.summary div { padding: 14px 28px; border: 1px solid rgba(15, 50, 48, .06); border-radius: 16px; box-shadow: var(--shadow); }
+.room { border-radius: 16px; background: #fbfdfd; box-shadow: 0 1px 2px rgba(15, 50, 48, .04); }
+.room:hover { box-shadow: var(--shadow-hover); }
+.assign, .totals { border-radius: 16px; }
+.prio { border-radius: 18px; }
+.shift-opt { border-radius: 14px; box-shadow: var(--shadow); }
+.slot { border-radius: 12px; }
+.slot:hover:not(:disabled) { box-shadow: 0 6px 14px rgba(19, 124, 120, .15); }
+.bed { border-radius: 10px; }
+
+/* ---------- Buttons and tags: pills ---------- */
+.btn { padding: 11px 22px; border-radius: 99px; font-weight: 700; box-shadow: 0 8px 20px rgba(19, 124, 120, .26); }
+.btn:hover { box-shadow: 0 12px 26px rgba(19, 124, 120, .34); }
+.btn:disabled { box-shadow: none; }
+.btn.ghost, .btn.ghost-blue { background: #fff; color: var(--primary); border: 1.5px solid rgba(19, 124, 120, .55); box-shadow: none; }
+.btn.ghost:hover, .btn.ghost-blue:hover { background: #c6d3d0; border-color: var(--primary); }
+.btn.danger { border-radius: 99px; box-shadow: none; }
+.btn.small { padding: 7px 16px; }
+.login .btn { border-radius: 99px; }
+.tag { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; font-size: 11.5px; font-weight: 700; letter-spacing: .3px; }
+.tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.tab { padding: 8px 18px; background: #eef4f3; font-weight: 700; }
+.tab.on { box-shadow: 0 8px 18px rgba(19, 124, 120, .28); }
+
+/* ---------- Tables and inputs ---------- */
+th { background: #f3f8f7; color: #6a7d84; font-size: 10.5px; font-weight: 700; letter-spacing: .9px; }
+th:first-child { border-radius: 12px 0 0 12px; }
+th:last-child { border-radius: 0 12px 12px 0; }
+td { border-bottom: 1px solid #edf3f2; }
+tbody tr:hover { background: #f6fbfa; }
+.search { padding: 11px 20px; border: 1.5px solid transparent; border-radius: 99px; background: #f1f6f5; }
+.form input, .form select, .grid2 input, .grid2 select, .assign select, .bill-row input, .assign-row input { border-radius: 12px; background: #fbfdfd; }
+
+/* ---------- Pop-ups and chat ---------- */
+.overlay { background: rgba(15, 40, 38, .5); }
+.modal { border-top: 0; border-radius: 24px; box-shadow: 0 30px 80px rgba(15, 50, 48, .25); }
+.modal h2 { color: #12302f; font-weight: 800; letter-spacing: -.5px; }
+.chat-fab { box-shadow: 0 12px 30px rgba(19, 124, 120, .4); }
+.chat-fab:hover { box-shadow: 0 16px 36px rgba(19, 124, 120, .5); }
+.chat-panel { border-radius: 22px; box-shadow: 0 30px 80px rgba(15, 50, 48, .28); }
+.chat-head { background: linear-gradient(135deg, #137c78, #0f6663); }
+
+/* ---------- Responsive (must stay last) ---------- */
+@media (max-width: 860px) {
+  .content { padding: 24px 16px 40px; }
+  .topbar { padding-left: 16px; padding-right: 16px; }
+}
+@media (max-width: 520px) {
+  .welcome { font-size: 26px; }
+}
