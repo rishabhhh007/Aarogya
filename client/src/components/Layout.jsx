@@ -46,10 +46,11 @@ export default function Layout() {
       <div className="main">
         <div className="topbar">
           <button className="burger" onClick={() => setOpen(true)}>☰</button>
-          <div>
+          <div className="tb-title">
             <h2>{title}</h2>
             <small>{new Date().toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</small>
           </div>
+          <ChatWidget />
           <div className="user-chip">
             <span className="avatar">{user.name?.[0]?.toUpperCase()}</span>
             <div><b>{user.name}</b><small>{user.role}</small></div>
@@ -57,7 +58,6 @@ export default function Layout() {
         </div>
         <div className="content"><Outlet /></div>
       </div>
-      <ChatWidget/>
     </div>
   );
 }

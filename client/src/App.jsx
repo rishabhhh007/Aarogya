@@ -2,7 +2,6 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Settings from './pages/Settings';
-import ComingSoon from './pages/ComingSoon';
 import StaffList from './pages/StaffList';
 import StaffForm from './pages/StaffForm';
 import Patients from './pages/Patients';
